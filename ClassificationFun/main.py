@@ -117,7 +117,7 @@ def main():
     # can make use of get_frequencies()
     knn_clf = KNeighborsClassifier(n_neighbors=3, metric="euclidean")
     knn_clf.fit(X_train, y_train)
-    distances, indexes = knn_clf.kneighbors([test_instance, [1, 5], [3, 4]])
+    distances, indexes = knn_clf.kneighbors([test_instance])
     print(distances)
     print(indexes)
 
