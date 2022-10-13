@@ -1,6 +1,7 @@
 import operator
 import numpy as np
 from scipy.spatial.distance import euclidean
+from sklearn.neighbors import KNeighborsClassifier
 
 from mysimplelinearregressor import MySimpleLinearRegressor
 
@@ -114,7 +115,11 @@ def main():
     # TODO: extract the top k closes neighbors' y labels from y_train
     # then use majority voting to find the prediction for this test instance
     # can make use of get_frequencies()
-
+    knn_clf = KNeighborsClassifier(n_neighbors=3, metric="euclidean")
+    knn_clf.fit(X_train, y_train)
+    distances, indexes = knn_clf.kneighbors([test_instance, [1, 5], [3, 4]])
+    print(distances)
+    print(indexes)
 
 
 
