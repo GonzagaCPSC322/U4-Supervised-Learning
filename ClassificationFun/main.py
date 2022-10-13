@@ -1,7 +1,6 @@
 import operator
 import numpy as np
 from scipy.spatial.distance import euclidean
-from sklearn.neighbors import KNeighborsClassifier
 
 from mysimplelinearregressor import MySimpleLinearRegressor
 
