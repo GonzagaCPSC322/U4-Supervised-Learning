@@ -116,5 +116,67 @@ def main():
     # can make use of get_frequencies()
 
 
+
+
+    # notes on generating training and testing sets from a dataset
+    # 1. holdout method
+    # 2. random subsampling
+    # 3. k fold cross validation (and variants)
+    # 4. bootstrap method
+
+    # 1. holdout method
+    # "hold out" a certain number of instances for testing
+    # train on the remaining instances (e.g. the ones not held out)
+    # test_size is the parameter that dictates how many instances
+    # to hold out
+    # e.g. test_size=2 -> holdout 2 instances for testing
+    # e.g. test_size=0.33 -> holdout 33% of instances for testing
+    # test_size=0.33 is pretty common
+    # 2:1 train:test split
+
+    # 2. random subsampling
+    # repeat the holdout method k times
+    # (this is a diff k than the k in kNN)
+    # the accuracy is the average accuracy over
+    # the k holdout methods
+
+    # 3. k fold cross validation
+    # (also a diff k...)
+    # we are more intentional about our partitions
+    # of the data into training and testing sets
+    # each instance is in the test set once
+    # create k folds
+    # for each fold in the folds:
+    #     hold out the fold for testing
+    #     training on the remaining folds (folds - fold)
+    # accuracy is the total correctly predicted divided
+    # by the total predicted over all the folds
+    # variants
+    # LOOCV leave one out cross validation
+    # k = N (number of instances in the dataset)
+    # when you have a small dataset and you need as much
+    # training data as you can get
+    # stratified k fold cross validation
+    # where each fold has roughly the same distribution of 
+    # class labels as the original dataset
+    # first, group by class
+    # then for each group distribute the instances to the folds
+
+    # 4. bootstrap method
+    # like random subsampling but with replacement
+    # create a training set by sampling N instances
+    # with replacement 
+    # N is the number instances in the dataset
+    # the instances not sampled form your test set
+    # ~63.2% of instances will be sampled into training set
+    # ~36.8% of instances will not (form test set)
+    # see github for math intuition
+    # repeat the bootstrap sampling k times
+    # accuracy is the weighted average accuracy
+    # over the k runs
+    # (weighted because test set size varies over k runs)
+
+
+
 if __name__ == "__main__":
     main()
