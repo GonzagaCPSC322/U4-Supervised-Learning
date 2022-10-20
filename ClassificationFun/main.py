@@ -19,6 +19,16 @@ def test_compute_euclidean_distance():
     dist_sol = euclidean(v1, v2)
     assert np.isclose(dist, dist_sol)
 
+def randomize_in_place(alist, parallel_list=None):
+    for i in range(len(alist)):
+        # generate a random index to swap this value at i with
+        rand_index = np.random.randint(0, len(alist)) # rand int in [0, len(alist))
+        # do the swap
+        alist[i], alist[rand_index] = alist[rand_index], alist[i]
+        if parallel_list is not None:
+            parallel_list[i], parallel_list[rand_index] =\
+                parallel_list[rand_index], parallel_list[i]
+
 def main():
     # starting with PA4, we are going to be implementing
     # ML algorithms using a standard API
@@ -181,7 +191,12 @@ def main():
     # over the k runs
     # (weighted because test set size varies over k runs)
 
-
+    # warmup
+    print("randomizing in place")
+    randomize_in_place(X_train, y_train)
+    for i in range(len(X_train)):
+        # check they are still parallel
+        print(X_train[i], y_train[i])
 
 if __name__ == "__main__":
     main()
