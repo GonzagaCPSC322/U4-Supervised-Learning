@@ -27,6 +27,7 @@ def display_train_test(label, X_train, X_test, y_train, y_test):
 # little utility function
 def display_folds(label, folds, X, y):
     print(label)
+    print("returned:", folds)
     for i, _ in enumerate(folds):
         curr_fold = folds[i]
         print("fold #:", i)
