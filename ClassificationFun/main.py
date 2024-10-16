@@ -20,6 +20,15 @@ def test_compute_euclidean_distance():
     sp_dist = euclidean(v1, v2)
     assert np.isclose(dist, sp_dist)
 
+def randomize_in_place(alist, parallel_list=None):
+    for i in range(len(alist)):
+        # generate a random index to swap this value at i with
+        rand_index = np.random.randint(0, len(alist)) # rand int in [0, len(alist))
+        # do the swap
+        alist[i], alist[rand_index] = alist[rand_index], alist[i]
+        if parallel_list is not None:
+            parallel_list[i], parallel_list[rand_index] = parallel_list[rand_index], parallel_list[i]
+            
 def main():
     # starting with PA4, we are going to implement
     # common ML algorithms adhering to a popular
@@ -117,6 +126,19 @@ def main():
     distances, indexes = knn_clf.kneighbors([unseen_instance])
     print(distances)
     print(indexes)
+
+    # PA5 starter code
+    # Prompt: In ClassificationFun/main.py, write a function called `randomize_in_place(alist, parallel_list=None)`
+    # that accepts at least one list and shuffles the elements of the list. 
+    # If a second list is passed in, it should be shuffled in the same order.
+    # Call your function with the `X_train` and `y_train` lists. Make sure they get shuffled in parallel :)
+    # Note: this function will be super handy for PA5! I'll post a solution after class :)
+    np.random.seed(0)
+    print("randomizing in place")
+    randomize_in_place(X_train, y_train)
+    for i in range(len(X_train)):
+        # check they are still parallel
+        print(X_train[i], y_train[i])
 
 if __name__ == "__main__":
     main()
